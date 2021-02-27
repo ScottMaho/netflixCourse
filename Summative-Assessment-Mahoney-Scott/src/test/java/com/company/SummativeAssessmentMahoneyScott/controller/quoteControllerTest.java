@@ -2,6 +2,7 @@ package com.company.SummativeAssessmentMahoneyScott.controller;
 
 import com.company.SummativeAssessmentMahoneyScott.model.quote;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
@@ -30,7 +31,7 @@ public class quoteControllerTest {
 
     private List<quote> quoteList;
 
-    @BeforeEach
+    @Before
     public void setUp() {
     }
 
@@ -48,7 +49,7 @@ public class quoteControllerTest {
     public void shouldReturnQuoteById() throws Exception {
         quote outputQuote = new quote();
         outputQuote.setQuote("Change the world by being yourself.");
-        outputQuote.setQuote("Amy Poehler");
+        outputQuote.setAuthor("Amy Poehler");
         outputQuote.setId(2);
         String outputJson = mapper.writeValueAsString(outputQuote);
         mockMvc.perform(get("/quote/2"))

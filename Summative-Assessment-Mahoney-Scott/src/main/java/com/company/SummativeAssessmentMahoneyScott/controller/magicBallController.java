@@ -30,13 +30,14 @@ public class magicBallController {
 
     @RequestMapping(value = "/magic", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
-    public Answer magicAnswer(@RequestBody Answer question) {
+    public Answer shouldReturnAnswerOnPostRequest(@RequestBody Answer question) {
 
         Random ans = new Random();
         int index = ans.nextInt(eightBallList.size());
+        question.setId(index);
         String answer = eightBallList.get(index);
         question.setAnswer(answer);
-        question.setId(index);
+
 
         return question;
     }

@@ -29,7 +29,7 @@ public class quoteController {
         quoteList.add(new quote("All limitations are self-imposed.", "Oliver Wendell Holmes", idCounter++));
     }
 
-    @RequestMapping(value = "/quote/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/quote", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public quote wordDefById(@PathVariable int id)
     {

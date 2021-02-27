@@ -46,7 +46,7 @@ public class WordControllerTest {
 
     // Testing GET record/{id}
     @Test
-    public void shouldReturnWordById() throws Exception {
+    public void wordDefById() throws Exception {
         word outputWord = new word();
         outputWord.setId(2);
         String outputJson = mapper.writeValueAsString(outputWord);

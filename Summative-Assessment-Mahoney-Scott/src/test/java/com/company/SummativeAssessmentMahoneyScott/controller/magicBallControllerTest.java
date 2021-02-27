@@ -42,6 +42,7 @@ public class magicBallControllerTest {
         Answer outputAnswer = new Answer();
         outputAnswer.setQuestion("How will my day go?");
         outputAnswer.setAnswer("Better not tell you now");
+        outputAnswer.setId(2);
         String outputJson = mapper.writeValueAsString(outputAnswer);
         mockMvc.perform(
                 post("/magic")                            // Perform the POST request
