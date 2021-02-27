@@ -1,6 +1,7 @@
 package com.company.SummativeAssessmentMahoneyScott.controller;
 
 import com.company.SummativeAssessmentMahoneyScott.model.Answer;
+import com.company.SummativeAssessmentMahoneyScott.model.quote;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -13,7 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -22,13 +22,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(WordController.class)
 public class magicBallControllerTest {
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     private ObjectMapper mapper = new ObjectMapper();
 
     private List<Answer> eightBallList;
-
-
 
     @BeforeEach
     public void setUp() {
@@ -37,10 +35,17 @@ public class magicBallControllerTest {
     @Test
     public void shouldReturnAnswerOnPostRequest() throws Exception {
 
-        String outputJson = mapper.writeValueAsString(eightBallList);
+        Answer inputAnswer = new Answer();
+        inputAnswer.setQuestion("How will my day go?");
+        inputAnswer.setAnswer("Better not tell you now");
+        String inputJson = mapper.writeValueAsString(inputAnswer);
+        Answer outputAnswer = new Answer();
+        outputAnswer.setQuestion("How will my day go?");
+        outputAnswer.setAnswer("Better not tell you now");
+        String outputJson = mapper.writeValueAsString(outputAnswer);
         mockMvc.perform(
                 post("/magic")                            // Perform the POST request
-                        .content(outputJson)                       // Set the request body
+                        .content(inputJson)                       // Set the request body
                         .contentType(MediaType.APPLICATION_JSON)  // Tell the server it's in JSON format
         )
                 .andDo(print())                                // Print results to console

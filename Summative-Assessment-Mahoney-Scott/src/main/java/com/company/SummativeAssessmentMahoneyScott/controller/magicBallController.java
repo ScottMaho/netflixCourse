@@ -11,7 +11,6 @@ import java.util.Random;
 @RestController
 public class magicBallController {
     private List<String> eightBallList;
-    private static int idCounter = 1;
 
     public magicBallController() {
 
@@ -32,10 +31,11 @@ public class magicBallController {
     @RequestMapping(value = "/magic", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public Answer magicAnswer(@RequestBody Answer question) {
+
         Random ans = new Random();
         int index = ans.nextInt(eightBallList.size());
-        String num = eightBallList.get(index);
-        question.setAnswer(num);
+        String answer = eightBallList.get(index);
+        question.setAnswer(answer);
         question.setId(index);
 
         return question;

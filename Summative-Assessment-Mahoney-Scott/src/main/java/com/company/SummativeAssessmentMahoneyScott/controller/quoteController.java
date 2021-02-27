@@ -1,10 +1,13 @@
 package com.company.SummativeAssessmentMahoneyScott.controller;
 
 import com.company.SummativeAssessmentMahoneyScott.model.quote;
-import org.springframework.web.bind.annotation.RestController;
+import com.company.SummativeAssessmentMahoneyScott.model.word;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @RestController
 public class quoteController {
@@ -24,5 +27,14 @@ public class quoteController {
         quoteList.add(new quote("What we think, we become.", "a dark blue color", idCounter++));
         quoteList.add(new quote("Have enough courage to start and enough heart to finish.", "Jessica N. S. Yourko", idCounter++));
         quoteList.add(new quote("All limitations are self-imposed.", "Oliver Wendell Holmes", idCounter++));
+    }
+
+    @RequestMapping(value = "/quote/{id}", method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
+    public quote wordDefById(@PathVariable int id)
+    {
+        Random random = new Random();
+        int index = random.nextInt(quoteList.size());
+        return quoteList.get(index);
     }
 }

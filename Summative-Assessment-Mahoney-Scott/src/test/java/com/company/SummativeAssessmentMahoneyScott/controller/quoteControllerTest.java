@@ -47,6 +47,8 @@ public class quoteControllerTest {
     @Test
     public void shouldReturnQuoteById() throws Exception {
         quote outputQuote = new quote();
+        outputQuote.setQuote("Change the world by being yourself.");
+        outputQuote.setQuote("Amy Poehler");
         outputQuote.setId(2);
         String outputJson = mapper.writeValueAsString(outputQuote);
         mockMvc.perform(get("/quote/2"))

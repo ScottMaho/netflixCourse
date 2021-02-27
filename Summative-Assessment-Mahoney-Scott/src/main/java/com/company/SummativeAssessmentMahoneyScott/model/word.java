@@ -1,5 +1,4 @@
 package com.company.SummativeAssessmentMahoneyScott.model;
-
 import java.util.Objects;
 
 public class word {
@@ -13,8 +12,6 @@ public class word {
     }
 
     public word(String word, String definition, int id) {
-
-
         this.word = word;
         this.definition = definition;
         this.id = id;

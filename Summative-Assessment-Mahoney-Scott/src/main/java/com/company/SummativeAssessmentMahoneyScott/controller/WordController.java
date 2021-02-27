@@ -28,23 +28,12 @@ public class WordController {
     }
 
 
-    @RequestMapping(value = "/word/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/word", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
     public word wordDefById(@PathVariable int id)
     {
-        Random ans = new Random();
-        int index = ans.nextInt(wordList.size());
-        word foundWord = null;
-
-        
-        for(word word : wordList)
-        {
-            if(word.getId() == id)
-            {
-                foundWord = word;
-                break;
-            }
-        }
-        return foundWord;
+        Random random = new Random();
+        int index = random.nextInt(wordList.size());
+        return wordList.get(index);
     }
 }

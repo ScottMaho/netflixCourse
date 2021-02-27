@@ -35,6 +35,8 @@ public class WordControllerTest {
 
     @Test
     public void shouldReturnAllWordsAndDefInCollection() throws Exception {
+
+
         String outputJson = mapper.writeValueAsString(wordList);
         // ACT
         mockMvc.perform(get("/word"))                // Perform the GET request
