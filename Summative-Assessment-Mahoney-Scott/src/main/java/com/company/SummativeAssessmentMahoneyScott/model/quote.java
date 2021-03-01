@@ -1,5 +1,6 @@
 package com.company.SummativeAssessmentMahoneyScott.model;
 
+import java.util.List;
 import java.util.Objects;
 
 public class quote {

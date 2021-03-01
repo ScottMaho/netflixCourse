@@ -1,7 +1,6 @@
 package com.company.SummativeAssessmentMahoneyScott.controller;
 
 import com.company.SummativeAssessmentMahoneyScott.model.quote;
-import com.company.SummativeAssessmentMahoneyScott.model.word;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +10,7 @@ import java.util.Random;
 
 @RestController
 public class quoteController {
-    private List<quote> quoteList;
+    List<quote> quoteList;
     private static int idCounter = 1;
 
     public quoteController() {
@@ -29,12 +28,13 @@ public class quoteController {
         quoteList.add(new quote("All limitations are self-imposed.", "Oliver Wendell Holmes", idCounter++));
     }
 
-    @RequestMapping(value = "/quote", method = RequestMethod.GET)
+    @RequestMapping(value = "/quote/{id}", method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.OK)
-    public quote wordDefById(@PathVariable int id)
+    public quote quoteAll(@PathVariable int id)
     {
+
         Random random = new Random();
-        int index = random.nextInt(quoteList.size());
-        return quoteList.get(index);
+        id = random.nextInt(quoteList.size());
+        return quoteList.get(id);
     }
 }

@@ -4,7 +4,6 @@ import com.company.SummativeAssessmentMahoneyScott.model.quote;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -14,7 +13,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -22,39 +21,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(WordController.class)
+@WebMvcTest(quoteController.class)
 public class quoteControllerTest {
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
-    private ObjectMapper mapper = new ObjectMapper();
+    ObjectMapper mapper = new ObjectMapper();
 
-    private List<quote> quoteList;
-
-    @Before
-    public void setUp() {
-    }
-
-    @Test
-    public void shouldReturnAllQuotesAndAuthsInCollection() throws Exception {
-        String outputJson = mapper.writeValueAsString(quoteList);
-        // ACT
-        mockMvc.perform(get("/quote"))                // Perform the GET request
-                .andDo(print())                          // Print results to console
-                .andExpect(status().isOk());              // ASSERT (status code is 200)
-    }
-
-    // Testing GET record/{id}
     @Test
     public void shouldReturnQuoteById() throws Exception {
+
         quote outputQuote = new quote();
-        outputQuote.setQuote("Change the world by being yourself.");
-        outputQuote.setAuthor("Amy Poehler");
-        outputQuote.setId(2);
+        outputQuote.setQuote("Love For All, Hatred For None.");
+        outputQuote.setAuthor("Khalifatul Masih III");
+        outputQuote.setId(1);
         String outputJson = mapper.writeValueAsString(outputQuote);
-        mockMvc.perform(get("/quote/2"))
-                .andDo(print())
-                .andExpect(status().isOk())
+        mockMvc.perform(get("/quote/1"))                // Perform the GET request
+                .andDo(print())                          // Print results to console
+                .andExpect(status().isOk())              // ASSERT (status code is 200)
                 .andExpect(content().json(outputJson));
     }
+
 }

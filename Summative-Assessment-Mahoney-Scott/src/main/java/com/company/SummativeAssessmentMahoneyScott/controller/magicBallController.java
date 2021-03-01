@@ -29,7 +29,7 @@ public class magicBallController {
     }
 
     @RequestMapping(value = "/magic", method = RequestMethod.POST)
-    @ResponseStatus(value = HttpStatus.OK)
+    @ResponseStatus(value = HttpStatus.CREATED)
     public Answer shouldReturnAnswerOnPostRequest(@RequestBody Answer question) {
 
         Random ans = new Random();

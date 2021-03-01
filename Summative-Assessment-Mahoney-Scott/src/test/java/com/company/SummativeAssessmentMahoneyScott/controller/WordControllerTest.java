@@ -1,5 +1,6 @@
 package com.company.SummativeAssessmentMahoneyScott.controller;
 
+import com.company.SummativeAssessmentMahoneyScott.model.quote;
 import com.company.SummativeAssessmentMahoneyScott.model.word;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
@@ -23,36 +24,20 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(WordController.class)
 public class WordControllerTest {
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
-    private ObjectMapper mapper = new ObjectMapper();
-
-    private List<word> wordList;
-
-    @BeforeEach
-    public void setUp() {
-    }
+    ObjectMapper mapper = new ObjectMapper();
 
     @Test
     public void shouldReturnAllWordsAndDefInCollection() throws Exception {
-
-
-        String outputJson = mapper.writeValueAsString(wordList);
-        // ACT
-        mockMvc.perform(get("/word"))                // Perform the GET request
-                .andDo(print())                          // Print results to console
-                .andExpect(status().isOk());              // ASSERT (status code is 200)
-    }
-
-    // Testing GET record/{id}
-    @Test
-    public void wordDefById() throws Exception {
         word outputWord = new word();
-        outputWord.setId(2);
+        outputWord.setWord("mastermind");
+        outputWord.setDefinition("a person who designs and guides a plan or undertaking");
+        outputWord.setId(1);
         String outputJson = mapper.writeValueAsString(outputWord);
-        mockMvc.perform(get("/word/2"))
-                .andDo(print())
-                .andExpect(status().isOk())
+        mockMvc.perform(get("/word/1"))                // Perform the GET request
+                .andDo(print())                          // Print results to console
+                .andExpect(status().isOk())            // ASSERT (status code is 200)
                 .andExpect(content().json(outputJson));
     }
 }

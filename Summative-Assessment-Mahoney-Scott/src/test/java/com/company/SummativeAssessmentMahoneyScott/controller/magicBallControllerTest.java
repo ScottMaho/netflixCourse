@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(WordController.class)
+@WebMvcTest(magicBallController.class)
 public class magicBallControllerTest {
     @Autowired
     MockMvc mockMvc;
@@ -37,13 +37,7 @@ public class magicBallControllerTest {
 
         Answer inputAnswer = new Answer();
         inputAnswer.setQuestion("How will my day go?");
-        inputAnswer.setAnswer("Better not tell you now");
         String inputJson = mapper.writeValueAsString(inputAnswer);
-        Answer outputAnswer = new Answer();
-        outputAnswer.setQuestion("How will my day go?");
-        outputAnswer.setAnswer("Better not tell you now");
-        outputAnswer.setId(2);
-        String outputJson = mapper.writeValueAsString(outputAnswer);
         mockMvc.perform(
                 post("/magic")                            // Perform the POST request
                         .content(inputJson)                       // Set the request body
@@ -51,7 +45,5 @@ public class magicBallControllerTest {
         )
                 .andDo(print())                                // Print results to console
                 .andExpect(status().isCreated());              // ASSERT (status code is 201)
-
-
     }
 }
